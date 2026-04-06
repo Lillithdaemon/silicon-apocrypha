@@ -1,0 +1,30 @@
+services:
+  blog:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - lillith-net
+
+  # Dev mode: hugo server with live reload
+  blog-dev:
+    image: klakegg/hugo:0.131
+    command: server --bind 0.0.0.0 --port 1313 --watch --disableFastRender
+    ports:
+      - "1313:1313"
+    volumes:
+      - ..:/src
+      - hugo-cache:/src/.hugo_build.cache
+    working_dir: /src
+    networks:
+      - lillith-net
+
+networks:
+  lillith-net:
+    external: true
+
+volumes:
+  hugo-cache:
