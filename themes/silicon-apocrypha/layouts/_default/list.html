@@ -1,0 +1,30 @@
+{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1 style="margin-bottom: 3rem; font-size: 1.4rem; color: var(--text-muted); font-family: var(--font-mono); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;">
+  {{- if eq .Title .Site.Title }}All Posts{{ else }}{{ .Title }}{{ end -}}
+</h1>
+
+{{ if .Content }}
+<div class="page-content" style="margin-bottom: 3rem; color: var(--text-secondary);">
+  {{ .Content }}
+</div>
+{{ end }}
+
+<ul class="posts-list">
+  {{ range .Paginator.Pages }}
+  <li>
+    <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="post-meta">
+      {{ .Date.Format "January 2, 2006" }}
+      {{ with .Params.tags }}
+        · {{ range first 3 . }}<span class="tag">{{ . }}</span>{{ end }}
+      {{ end }}
+    </div>
+    <p class="post-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | truncate 160 }}{{ end }}</p>
+  </li>
+  {{ end }}
+</ul>
+
+{{ template "_internal/pagination.html" . }}
+{{ end }}

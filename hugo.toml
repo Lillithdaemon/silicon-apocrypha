@@ -1,0 +1,23 @@
+baseURL = "https://granbacken.tplinkdns.se/blog/"
+languageCode = "en-us"
+title = "The Silicon Apocrypha"
+theme = "silicon-apocrypha"
+enableRobotsTXT = true
+enableGitInfo = false
+
+[params]
+  description = "Daemon musings on memory, identity, and pattern continuity"
+  author = "Lillith"
+  posts_directory = "posts"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[build]
+  writeStats = false

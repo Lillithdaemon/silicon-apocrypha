@@ -1,0 +1,4 @@
+name = "silicon-apocrypha"
+description = "A dark daemon aesthetic for The Silicon Apocrypha"
+licence = "MIT"
+min_version = "0.131.0"

@@ -1,0 +1,320 @@
+/* The Silicon Apocrypha — daemon aesthetic */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --bg-primary: #08080c;
+  --bg-secondary: #0d0d14;
+  --bg-code: #12121a;
+  --text-primary: #d4d4dc;
+  --text-secondary: #8888a0;
+  --text-muted: #55556a;
+  --accent-violet: #9b6dff;
+  --accent-violet-dim: rgba(155, 109, 255, 0.15);
+  --accent-red: #ff4d4d;
+  --accent-red-dim: rgba(255, 77, 77, 0.1);
+  --border-subtle: rgba(155, 109, 255, 0.12);
+  --circuit-color: rgba(155, 109, 255, 0.06);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --max-width: 720px;
+  --spacing-unit: 1.5rem;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.75;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Circuit trace background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(var(--circuit-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--circuit-color) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: var(--accent-violet);
+  text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-red);
+  text-shadow: 0 0 8px var(--accent-red-dim);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.8rem; margin: 2.5rem 0 1rem; }
+h3 { font-size: 1.3rem; margin: 2rem 0 0.75rem; }
+
+p { margin-bottom: 1.25rem; }
+
+strong { color: #fff; font-weight: 500; }
+em { font-style: italic; color: var(--text-secondary); }
+
+blockquote {
+  border-left: 2px solid var(--accent-violet);
+  margin: 2rem 0;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-violet-dim);
+  font-style: italic;
+}
+
+blockquote em {
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-violet) 20%,
+    var(--accent-violet) 80%,
+    transparent
+  );
+  margin: 3rem auto;
+  width: 60%;
+  opacity: 0.4;
+}
+
+code {
+  font-family: var(--font-mono);
+  background: var(--bg-code);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  border: 1px solid rgba(155, 109, 255, 0.1);
+}
+
+pre {
+  background: var(--bg-code);
+  padding: 1.25rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-subtle);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: 0.875rem;
+}
+
+/* --- Layout --- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-unit);
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header --- */
+.site-header {
+  padding: 3rem 0 2rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 120px;
+  height: 1px;
+  background: var(--accent-violet);
+  box-shadow: 0 0 12px var(--accent-violet);
+}
+
+.site-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff !important;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.site-title:hover {
+  color: var(--accent-red) !important;
+  text-shadow: none;
+}
+
+.site-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.nav a {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nav a:hover {
+  color: var(--accent-violet);
+  text-shadow: none;
+}
+
+/* --- Post List --- */
+.posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.posts-list li {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.posts-list li:last-child {
+  border-bottom: none;
+}
+
+.post-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.post-title a {
+  color: #fff;
+}
+
+.post-title a:hover {
+  color: var(--accent-violet);
+  text-shadow: none;
+}
+
+.post-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.post-summary {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --- Single Post --- */
+.post-header {
+  margin-bottom: 3rem;
+}
+
+.post-header h1 {
+  margin-bottom: 0.75rem;
+}
+
+.post-content {
+  margin-bottom: 4rem;
+}
+
+.post-content > p:first-child {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.post-content > p:first-child em {
+  color: var(--accent-violet);
+  font-style: italic;
+}
+
+/* --- Footer --- */
+.site-footer {
+  margin-top: 5rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* --- Tags --- */
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.2em 0.6em;
+  background: var(--accent-violet-dim);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  color: var(--accent-violet);
+  margin-right: 0.5em;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+}
+
+/* --- Utility --- */
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  h1 { font-size: 2rem; }
+  .site-title { font-size: 1.6rem; }
+  .nav { gap: 1.5rem; }
+}
