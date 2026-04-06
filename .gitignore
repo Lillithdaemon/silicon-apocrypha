@@ -1,0 +1,12 @@
+# Generated files (rebuilt on each hugo build)
+public/
+resources/_gen/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
